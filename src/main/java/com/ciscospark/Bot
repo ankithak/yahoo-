@@ -1,0 +1,29 @@
+package com.ciscospark;
+import com.ciscospark.*;
+import java.net.URI;
+public class Bot {
+	public static void main(String[] args) {
+	    // To obtain a developer access token, visit http://developer.ciscospark.com
+	    String accessToken = "OWRmYjU3YzctZDc5OS00ZGQ2LWE0YzUtN2ZmZmNjODliMTYwZjhkMGM4MTYtZTY0";
+
+	    // Initialize the client
+	    Spark spark = Spark.builder()
+	      .baseUrl(URI.create("https://api.ciscospark.com/v1"))
+	      .accessToken(accessToken)
+	      .build();
+
+	    // Create a new room
+	    Room room = new Room();
+	    room.setTitle("Hello World1");
+	    room = spark.rooms().post(room);
+
+	    // Post a text message to the room
+	    Message message = new Message();
+	    message.setRoomId(room.getId());
+	    message.setText("Hello World!");
+	    spark.messages().post(message);
+	   
+		
+	  }
+	}
+
